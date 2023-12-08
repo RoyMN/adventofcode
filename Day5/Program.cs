@@ -16,7 +16,7 @@ void Part1()
     List<RangeNode> finalRanges = TraverseGraph(seedRanges, mappings);
     var lowestLocation = finalRanges.Min(r => r.Start);
     sw.Stop();
-    Console.WriteLine($"Lowest Location found: {lowestLocation} in {sw.ElapsedMilliseconds}ms");
+    Console.WriteLine($"Lowest Location found (Part1): {lowestLocation} in {sw.ElapsedMilliseconds}ms");
 }
 
 void Part2()
@@ -29,7 +29,7 @@ void Part2()
     var lowestLocation = finalRanges.Min(r => r.Start);
     sw.Stop();
 
-    Console.WriteLine($"Lowest Location found: {lowestLocation} in {sw.ElapsedMilliseconds}ms");
+    Console.WriteLine($"Lowest Location found (Part2), pre-JITed, yay!: {lowestLocation} in {sw.ElapsedMilliseconds}ms");
 }
 
 static List<RangeNode> TraverseGraph(List<RangeNode> seedRanges, Dictionary<string, List<MappingEdge>> mappings)
