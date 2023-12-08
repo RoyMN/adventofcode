@@ -28,6 +28,7 @@ void Part2()
     List<RangeNode> finalRanges = TraverseGraph(seedRanges, mappings);
     var lowestLocation = finalRanges.Min(r => r.Start);
     sw.Stop();
+
     Console.WriteLine($"Lowest Location found: {lowestLocation} in {sw.ElapsedMilliseconds}ms");
 }
 
@@ -37,7 +38,7 @@ static List<RangeNode> TraverseGraph(List<RangeNode> seedRanges, Dictionary<stri
 
     foreach (var category in mappings.Keys)
     {
-        var sortedMappings = mappings[category].OrderBy(e => e.SourceStart).ToList();
+        var sortedMappings = mappings[category].OrderBy(e => e.SourceStart).ToArray();
 
         var nextRanges = new List<RangeNode>();
         foreach (RangeNode range in currentRanges)
@@ -50,12 +51,12 @@ static List<RangeNode> TraverseGraph(List<RangeNode> seedRanges, Dictionary<stri
     return currentRanges;
 }
 
-static List<RangeNode> TransformRange(RangeNode range, List<MappingEdge> mappingEdges)
+static List<RangeNode> TransformRange(RangeNode range, MappingEdge[] mappingEdges)
 {
     var transformedRanges = new List<RangeNode>();
     long currentStart = range.Start;
 
-    for (int i = 0; i < mappingEdges.Count; i++)
+    for (int i = 0; i < mappingEdges.Length; i++)
     {
         if (currentStart == range.End)
         {
