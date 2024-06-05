@@ -120,17 +120,35 @@ public static class MappingExtensions
     /// <param name="lines"></param>
     /// <param name="symbol"></param>
     /// <returns><c>Point</c> for each <c>symbol</c></returns>
-    public static IEnumerable<Point> FindSymbols(this string[] lines, char symbol)
+    public static IEnumerable<Point> FindSymbols(this string[] lines, char? symbol)
     {
-        if (lines.Length == 0) throw new();
-        var innerLength = lines[0].Length;
-        for (int i = 0; i < lines.Length; i++)
+        if (symbol == null)
         {
-            for (int j = 0; j < innerLength; j++)
+            if (lines.Length == 0) throw new();
+            var innerLength = lines[0].Length;
+            for (int i = 0; i < lines.Length; i++)
             {
-                if (lines[i][j] == symbol)
+                for (int j = 0; j < innerLength; j++)
                 {
-                    yield return (j, i);
+                    if (lines[i][j] != '.' && !char.IsDigit(lines[i][j]))
+                    {
+                        yield return (j, i);
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (lines.Length == 0) throw new();
+            var innerLength = lines[0].Length;
+            for (int i = 0; i < lines.Length; i++)
+            {
+                for (int j = 0; j < innerLength; j++)
+                {
+                    if (lines[i][j] == symbol)
+                    {
+                        yield return (j, i);
+                    }
                 }
             }
         }
