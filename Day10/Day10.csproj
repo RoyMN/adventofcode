@@ -5,20 +5,17 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <LinkerStackSize>67108864</LinkerStackSize> <!-- 64 MB -->
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="Day8.example1">
+    <PackageReference Include="MoreLinq" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="day10-input1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Day8.example2">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Day8.example3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Day8.input">
+    <None Update="day10-example1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

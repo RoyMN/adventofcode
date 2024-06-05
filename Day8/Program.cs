@@ -1,5 +1,4 @@
 ﻿using Extensions;
-using Utils;
 
 var example = false;
 
@@ -12,21 +11,70 @@ void Part1()
     var instructions = input[0].Select(x => ParseDirection(x)).ToArray();
     (string startKey, var map) = ParseMap(input[2..]);
     // Apparently startkey is always AAA and not the first in the list
-    var steps = Traverse("AAA", map, instructions);
-    Console.WriteLine($"Part 1: {steps}");
+    // var steps = Traverse("AAA", map, instructions);
+    // Console.WriteLine($"Part 1: {steps}");
 }
 
 void Part2()
 {
     var input = example ? File.ReadAllLines("./Day8.example3") : File.ReadAllLines("./Day8.input");
-    var instructions = input[0].Select(x => ParseDirection(x)).ToArray();
+    var instructions = input[0];
     (string[] startKeys, var map) = ParseMapWithStartKeys(input[2..]);
-    // Apparently startkey is always AAA and not the first in the list
-    Dictionary<(string[], Direction), string[]> cache = new Dictionary<(string[], Direction), string[]>();
-    var steps = TraverseFromMultiKeys(startKeys, map, instructions, cache);
-    Console.WriteLine($"Part 1: {steps}");
+    var steps = startKeys.Select(key => WalkKey(key, map, String.Join("",instructions))).ToList();
+    //Console.WriteLine($"Part 2: Steps found:");
+    foreach (var step in steps)
+    {
+        Console.WriteLine(step);
+    }
+    var res = steps.Aggregate(MappingExtensions.lcm);
+    Console.WriteLine($"Part 2: Steps found: {res}");
 }
 
+int WalkKeys(string[] keys, Dictionary<string, (string L, string R)> map, string instructions)
+{
+    for (int i = 0; i < keys.Length; i++)
+    {
+        var key = keys[i];
+        var steps = WalkKey(key, map, instructions);
+        Console.WriteLine($"Key: {key}, steps: {steps}");
+    }
+}
+
+int WalkKey(string key, Dictionary<string, (string L, string R)> map, string instructions)
+{
+    var step = 0;
+    string? firstZ = null;
+    var currentKey = key;
+    var found = false;
+    while(!found)
+    {
+        var instruction = instructions.GetInstruction(step);
+        // Console.WriteLine($"Current key: {currentKey}, instruction: {instruction}, step: {step}");
+        var nextKey = instruction switch
+        {
+            'L' => map[currentKey].L,
+            'R' => map[currentKey].R,
+            _ => throw new Exception("Invalid direction"),
+        };
+        if (nextKey[2] == 'Z')
+        {
+            if (firstZ == null)
+            {
+                firstZ = nextKey;
+            }
+            else if (firstZ == nextKey)
+            {
+                found = true;
+                // Console.WriteLine("Found a cycle!");
+            }
+        }
+        currentKey = nextKey;
+        step++;
+    }
+    return step / 2;
+}
+
+/*
 int Traverse(string startKey, Dictionary<string, (string L, string R)> map, Direction[] instructions, int steps = 0)
 {
     var currentSteps = steps;
@@ -50,67 +98,27 @@ int Traverse(string startKey, Dictionary<string, (string L, string R)> map, Dire
     }
     return Traverse(currentKey, map, instructions, currentSteps);
 }
+*/
 
+/*
 int TraverseFromMultiKeys(string[] startKeys, Dictionary<string, (string L, string R)> map, Direction[] instructions, Dictionary<(string[], Direction), string[]> cache, int steps = 0)
 {
-    var currentSteps = steps;
-    var currentKeys = startKeys;
-    if (currentKeys.All(x => x[2] == 'Z'))
+    Mapper mapper = new(startKeys, map, instructions);
+    while (!mapper.Valid)
     {
-        return currentSteps;
+        // Console.WriteLine($"Current keys: {string.Join(", ", mapper.currentKeys)}");
+        mapper.Next();
     }
-
-    next =>
-    {
-        if (cache.TryGetValue(cacheKey, out string[]? cachedResult))
-        {
-            if (cachedResult != null)
-            {
-                newKeys = cachedResult;
-            }
-        }
-        else
-        {
-            for (int j = 0; j < currentKeys.Length; j++)
-            {
-                var key = currentKeys[j];
-                var (L, R) = map[key];
-                newKeys[j] = instruction switch
-                {
-                    Direction.L => L,
-                    Direction.R => R,
-                    _ => throw new Exception("Invalid direction"),
-                };
-            }
-            currentKeys = newKeys;
-            cache.Add(cacheKey, newKeys);
-        }
-        currentSteps++;
-        return currentSteps;
-    };
-
-    for (int i = 0; i < instructions.Length; i++)
-    {
-        var instruction = instructions[i];
-        var newKeys = new string[currentKeys.Length];
-        var cacheKey = (startKeys, instructions[i]);
-
-        currentSteps++;
-        if (currentKeys.All(x => x[2] == 'Z'))
-        {
-            return currentSteps;
-        }
-    }
-    return TraverseFromMultiKeys(currentKeys, map, instructions, cache, currentSteps);
-
+    return mapper.Steps;
 }
+*/
 
-Direction ParseDirection(char direction)
+string ParseDirection(char direction)
 {
     return direction switch
     {
-        'L' => Direction.L,
-        'R' => Direction.R,
+        'L' => "L",
+        'R' => "R",
         _ => throw new Exception("Invalid direction"),
     };
 }
