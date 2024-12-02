@@ -10,6 +10,10 @@ public static class TaskGenerator
         {
             return new Day1.Task1();
         }
+        else if (day == 1 && task == 2)
+        {
+            return new Day1.Task2();
+        }
         throw new NotImplementedException($"Task not found: day {day} task {task}");
     }
 }
