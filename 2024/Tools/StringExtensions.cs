@@ -17,4 +17,9 @@ public static class StringExtensions
     {
         return str.Split(separator).Select(int.Parse);
     }
+
+    public static IEnumerable<IEnumerable<int>> ToCombinationsWithoutOne(this IEnumerable<int> ints)
+    {
+        return ints.Select((_, i) => ints.Where((_, j) => j != i).Select(value => value));
+    }
 }
