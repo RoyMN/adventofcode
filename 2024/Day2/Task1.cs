@@ -27,12 +27,6 @@ public class Task1 : IDailyRunner
         return $"Safe: {safe}";
     }
 
-    /**
-     * RunExample is used to run a specific example. Implement when needed.
-     * @param example: string - the example string, must have a new line
-     * @param logLevel: LogLevel - the log level
-     * @return string - the result of the example
-     */
     public string RunExample(string example, LogLevel logLevel = LogLevel.WARN)
     {
         ConsoleWriter logger = new(logLevel);
