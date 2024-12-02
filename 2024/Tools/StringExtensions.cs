@@ -7,4 +7,14 @@ public static class StringExtensions
         string[] parts = str.Split(separator);
         return (int.Parse(parts[0]), int.Parse(parts[1]));
     }
+
+    public static IEnumerable<int> ToInts(this string str, string separator)
+    {
+        return str.Split(separator).Select(int.Parse);
+    }
+
+    public static IEnumerable<int> ToInts(this string str, char separator)
+    {
+        return str.Split(separator).Select(int.Parse);
+    }
 }

@@ -33,4 +33,9 @@ public class Task1 : IDailyRunner
 
         return $"Sum of distances: {sumDistances}";
     }
+
+    public string RunExample(string example, LogLevel logLevel = LogLevel.WARN)
+    {
+        throw new NotImplementedException();
+    }
 }

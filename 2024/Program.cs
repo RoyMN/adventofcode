@@ -13,7 +13,7 @@ namespace AdventOfCode2024
         {
             if (args.Length < 2)
             {
-                Console.WriteLine("Usage: dotnet run <day> <task> [-s] [-[d/i/w/e]]");
+                Console.WriteLine("Usage: dotnet run <day> <task> [-s] [-[d/i/w/e]] [-o <example>]");
                 Console.WriteLine("-? for help");
                 return;
             }
@@ -28,6 +28,7 @@ namespace AdventOfCode2024
                 Console.WriteLine("-i: info log level");
                 Console.WriteLine("-w: warning log level (default)");
                 Console.WriteLine("-e: error log level");
+                Console.WriteLine("-o: override with a specific example. Example must be the last argument");
                 return;
             }
 
@@ -37,11 +38,20 @@ namespace AdventOfCode2024
                 LogLevel logLevel = LogLevelExtensions.GetLogLevel(args);
 
                 IDailyRunner runner = TaskGenerator.GetTask(day, task);
-                Console.WriteLine(runner.Run(sample, logLevel));
+                if (args.Contains("-o"))
+                {
+                    var example = args.Last();
+                    Console.WriteLine(runner.RunExample(example, logLevel));
+                }
+                else
+                {
+                    Console.WriteLine(runner.Run(sample, logLevel));
+                }
             }
             else
             {
-                Console.WriteLine("Usage: dotnet run <day> <task> [-s] [-d]");
+                Console.WriteLine("Usage: dotnet run <day> <task> [-s] [-[d/i/w/e]] [-o <example>]");
+                Console.WriteLine("-? for help");
             }
         }
     }

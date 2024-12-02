@@ -42,4 +42,9 @@ public class Task2 : IDailyRunner
 
         return $"Similarity Score: {similarityScore}";
     }
+
+    public string RunExample(string example, LogLevel logLevel = LogLevel.WARN)
+    {
+        throw new NotImplementedException();
+    }
 }
