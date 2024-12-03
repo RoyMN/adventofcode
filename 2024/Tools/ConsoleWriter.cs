@@ -2,7 +2,7 @@ namespace AdventOfCode2024.Tools;
 
 public class ConsoleWriter(LogLevel logLevel)
 {
-    public void Line(string message)
+    public void Info(string message)
     {
         if (logLevel <= LogLevel.INFO)
         {

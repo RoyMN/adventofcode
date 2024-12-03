@@ -19,7 +19,7 @@ public class Task1 : IDailyRunner
             var (isValid, _, _) = levels.CheckLevels(logger);
             if (isValid)
             {
-                logger.Line($"Safe: {line}");
+                logger.Info($"Safe: {line}");
                 safe++;
             }
             line = sr.ReadLine();
@@ -38,7 +38,7 @@ public class Task1 : IDailyRunner
             var (isValid, _, _) = levels.CheckLevels(logger);
             if (isValid)
             {
-                logger.Line($"Safe: {line}");
+                logger.Info($"Safe: {line}");
                 safe++;
             }
         }

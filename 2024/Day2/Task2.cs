@@ -17,7 +17,7 @@ public class Task2 : IDailyRunner
             var lines = line.ToInts(' ').ToCombinationsWithoutOne();
             if (lines.Any(l => l.CheckLevels(logger).isValid))
             {
-                logger.Line($"Safe: {line}");
+                logger.Info($"Safe: {line}");
                 safe++;
             }
             line = sr.ReadLine();

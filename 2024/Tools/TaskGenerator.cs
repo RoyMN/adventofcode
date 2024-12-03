@@ -14,6 +14,8 @@ public static class TaskGenerator
             (2, 2) => new Day2.Task2(),
             (3, 1) => new Day3.Task1(),
             (3, 2) => new Day3.Task2(),
+            (3, 3) => new Day3WithoutRegex.Task1(),
+            (3, 4) => new Day3WithoutRegex.Task2(),
             _ => null
         };
     }
