@@ -12,6 +12,8 @@ public static class TaskGenerator
             (1, 2) => new Day1.Task2(),
             (2, 1) => new Day2.Task1(),
             (2, 2) => new Day2.Task2(),
+            (3, 1) => new Day3.Task1(),
+            (3, 2) => new Day3.Task2(),
             _ => null
         };
     }
