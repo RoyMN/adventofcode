@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using AdventOfCode2024.Interfaces;
 using AdventOfCode2024.Tools;
 
