@@ -28,20 +28,18 @@ class Task1 : IDailyRunner
         int cols = grid[0].Length;
         int targetLength = target.Length;
 
-        // Directions as row and column deltas
         var directions = new (int dRow, int dCol)[]
         {
-            (0, 1),    // Right
-            (0, -1),   // Left
-            (1, 0),    // Down
-            (-1, 0),   // Up
-            (1, 1),    // Diagonal down-right
-            (1, -1),   // Diagonal down-left
-            (-1, 1),   // Diagonal up-right
-            (-1, -1)   // Diagonal up-left
+            (0, 1),
+            (0, -1),
+            (1, 0),
+            (-1, 0),
+            (1, 1),
+            (1, -1),
+            (-1, 1),
+            (-1, -1)
         };
 
-        // Use LINQ to count matches
         return (
             from row in Enumerable.Range(0, rows)
             from col in Enumerable.Range(0, cols)
@@ -58,19 +56,14 @@ class Task1 : IDailyRunner
         int cols = grid[0].Length;
         int targetLength = target.Length;
 
-        // Traverse the target string along the given direction
         for (int i = 0; i < targetLength; i++)
         {
             int newRow = startRow + i * dRow;
             int newCol = startCol + i * dCol;
 
-            // Check bounds
-            if (newRow < 0 || newRow >= rows || newCol < 0 || newCol >= cols)
-                return false;
+            if (newRow < 0 || newRow >= rows || newCol < 0 || newCol >= cols) return false;
 
-            // Check character match
-            if (grid[newRow][newCol] != target[i])
-                return false;
+            if (grid[newRow][newCol] != target[i]) return false;
         }
 
         return true;
