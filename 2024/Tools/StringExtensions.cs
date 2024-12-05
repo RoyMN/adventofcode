@@ -22,4 +22,16 @@ public static class StringExtensions
     {
         return ints.Select((_, i) => ints.Where((_, j) => j != i).Select(value => value));
     }
+
+    public static (int l, int r) TakeTwo(this string line, char delim)
+    {
+        var parts = line.Split(delim);
+        return (int.Parse(parts[0]), int.Parse(parts[1]));
+    }
+
+    public static bool TryReadLine(StreamReader sr, out string line)
+    {
+        line = sr.ReadLine()!;
+        return line != null;
+    }
 }
