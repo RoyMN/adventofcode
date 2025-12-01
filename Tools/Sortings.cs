@@ -1,4 +1,4 @@
-namespace AdventOfCode2024.Tools;
+namespace AdventOfCodeTools;
 
 public static class Sortings
 {

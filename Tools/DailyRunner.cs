@@ -1,6 +1,4 @@
-using AdventOfCode2024.Tools;
-
-namespace AdventOfCode2024.Interfaces;
+namespace AdventOfCodeTools;
 
 public interface IDailyRunner
 {

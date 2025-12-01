@@ -1,4 +1,4 @@
-using AdventOfCode2024.Tools;
+using AdventOfCodeTools;
 
 namespace AdventOfCode2024.Day3WithoutRegex;
 /**

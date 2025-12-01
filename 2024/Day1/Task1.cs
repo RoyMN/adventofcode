@@ -1,5 +1,4 @@
-using AdventOfCode2024.Interfaces;
-using AdventOfCode2024.Tools;
+using AdventOfCodeTools;
 
 namespace AdventOfCode2024.Day1;
 
@@ -7,7 +6,7 @@ public class Task1 : IDailyRunner
 {
     public string Run(bool sample = false, LogLevel logLevel = LogLevel.WARN)
     {
-        string fileName = sample ? "./Day1/sample.txt" : "./Day1/input.txt";
+        string fileName = sample ? "./2024/Day1/sample.txt" : "./2024/Day1/input.txt";
         StreamReader sr = new(fileName);
         ConsoleWriter logger = new(logLevel);
         string? line = sr.ReadLine();

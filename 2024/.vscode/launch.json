@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "program": "${workspaceFolder}/bin/Debug/net8.0/AdventOfCode2024.dll",
-            "args": ["4", "2", "-o", "M.S\r\n.A.\r\nS.M"],
+            "args": ["6", "2", "-s"],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             "console": "internalConsole"

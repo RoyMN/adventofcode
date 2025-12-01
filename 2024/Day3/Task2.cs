@@ -1,6 +1,5 @@
 using System.Text.RegularExpressions;
-using AdventOfCode2024.Interfaces;
-using AdventOfCode2024.Tools;
+using AdventOfCodeTools;
 
 namespace AdventOfCode2024.Day3;
 
@@ -8,7 +7,7 @@ public class Task2 : IDailyRunner
 {
     public string Run(bool sample = false, LogLevel logLevel = LogLevel.WARN)
     {
-        string fileName = "./Day3/input.txt";
+        string fileName = "./2024/Day3/input.txt";
         StreamReader sr = new(fileName);
         ConsoleWriter logger = new(logLevel);
 

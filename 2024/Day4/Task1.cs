@@ -1,5 +1,4 @@
-using AdventOfCode2024.Interfaces;
-using AdventOfCode2024.Tools;
+using AdventOfCodeTools;
 
 namespace AdventOfCode2024.Day4;
 
@@ -7,7 +6,7 @@ class Task1 : IDailyRunner
 {
     public string Run(bool sample = false, LogLevel logLevel = LogLevel.WARN)
     {
-        StreamReader sr = sample ? new("./Day4/sample.txt") : new("./Day4/input.txt");
+        StreamReader sr = sample ? new("./2024/Day4/sample.txt") : new("./2024/Day4/input.txt");
         string[] grid = sr.ReadToEnd().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
         int totalMatches = CountTotalOccurrences(grid, "XMAS");
         return $"Total 'XMAS' occurrences: {totalMatches}";

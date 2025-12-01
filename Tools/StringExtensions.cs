@@ -1,4 +1,4 @@
-namespace AdventOfCode2024.Tools;
+namespace AdventOfCodeTools;
 
 public static class StringExtensions
 {
@@ -33,5 +33,16 @@ public static class StringExtensions
     {
         line = sr.ReadLine()!;
         return line != null;
+    }
+
+    public static bool TryParseInt(this StreamReader sr, out int value)
+    {
+        string? line = sr.ReadLine();
+        if (line != null && int.TryParse(line, out value))
+        {
+            return true;
+        }
+        value = 0;
+        return false;
     }
 }
