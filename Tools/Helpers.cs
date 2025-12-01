@@ -1,6 +1,4 @@
-using AdventOfCodeTools;
-
-namespace AdventOfCode2024.Day2;
+namespace AdventOfCodeTools;
 
 public static class Helpers
 {
