@@ -13,13 +13,12 @@ public class Task1 : IDailyRunner
         var line = sr.ReadLine() ?? throw new Exception("Input file is empty");
         var visited = new HashSet<long>();
 
-        var ranges = line.Split(',');
-        var bounds = ranges.Select(r =>
+        var ranges = line.Split(',').Select(r =>
         {
             var parts = r.Split('-');
             return (long.Parse(parts[0]), long.Parse(parts[1]));
         });
-        foreach (var (start, end) in bounds)
+        foreach (var (start, end) in ranges)
         {
             for (long i = start; i <= end; i++)
             {
@@ -62,13 +61,12 @@ public class Task2 : IDailyRunner
         var line = sr.ReadLine() ?? throw new Exception("Input file is empty");
         var visited = new HashSet<long>();
 
-        var ranges = line.Split(',');
-        var bounds = ranges.Select(r =>
+        var ranges = line.Split(',').Select(r =>
         {
             var parts = r.Split('-');
             return (long.Parse(parts[0]), long.Parse(parts[1]));
         });
-        foreach (var (start, end) in bounds)
+        foreach (var (start, end) in ranges)
         {
             for (long i = start; i <= end; i++)
             {
