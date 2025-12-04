@@ -16,6 +16,8 @@ public class TaskGenerator : ITaskGenerator
             (3, 2) => new Day3.Task2(),
             // alternative solution for Day 3 Task 2 using stack and backtracking
             (3, 3) => new Day3.Task3(),
+            (4, 1) => new Day4.Task1(),
+            (4, 2) => new Day4.Task2(),
             _ => null
         };
     }
