@@ -20,6 +20,8 @@ public class TaskGenerator : ITaskGenerator
             (4, 2) => new Day4.Task2(),
             (5, 1) => new Day5.Task1(),
             (5, 2) => new Day5.Task2(),
+            (6, 1) => new Day6.Task1(),
+            (6, 2) => new Day6.Task2(),
             _ => null
         };
     }
